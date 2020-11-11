@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+</head>
+
+<body>
+    <center>
+        <h4>Enter Your Name: <input type="text" name="name" id="getName" placeholder="Enter Your Name"> </h4>
+        <h4>Enter Your ID: <input type="number" name="id" id="getId" placeholder="Enter Your ID"> </h4>
+        <h4>Enter Your University Name:
+            <input type="text" name="" placeholder="Your University Name" id="getUVName">
+        </h4>
+        <h2 style="color: red"><i>Educational Information</i></h2>
+
+        <h2>HSC Information</h2>
+        <h4>Educational Inistitution: <input type="text" name="name" id="getCollege" placeholder="Enter Your College"> </h4>
+        <h4>HSC GPA: <input type="number" name="id" id="getHSCGpa" placeholder = "Enter Your GPA"> </h4>
+
+        <h2>SSC Information</h2>
+        <h4>Educational Inistitution: <input type="text" name="name" id="getSchool" placeholder = "Enter Your School Name"> </h4>
+        <h4>SSC GPA: <input type="number" name="id" id="getSSCGpa" placeholder = "Enter Your GPA"> </h4>
+
+        <h3>Programming Language</h3>
+
+        <div>
+            <input type="checkbox" name="vechicle" value="c">
+            <label for="c">C</label>
+        </div>
+        <div>
+            <input type="checkbox" name="vechicle" value="c++">
+            <label for="c++">C++</label>
+        </div>
+        <div>
+            <input type="checkbox" name="vechicle" value="python">
+            <label for="python">Python</label>
+        </div>
+        <div>
+            <input type="checkbox" name="vechicle" value="java">
+            <label for="java">JAVA</label>
+        </div>
+        <div>
+            <input type="checkbox" id="auto" name="vechicle" value="html">
+            <label for="html">HTML</label>
+        </div>
+        <div>
+            <input type="checkbox" name="vechicle" value="other">
+            <label for="other">Other</label>
+        </div>
+        <input type="submit" id="submit" value="Submit">
+
+
+        <!-- Recive Data from input section  -->
+        <br><br><br>
+
+        <h2 style="color: red">Personal Information</h2>
+        <span>Student Name: <span id="setStudentName">Not Set Yet</span></span><br>
+        <span>Student ID: <span id="setStudentId">0000000</span></span><br>
+        <span>University Name: <span id="setUVName">Fill up the box then click submit</span></span><br><br>
+        <h3>Educational Information</h3><br>
+        <table border="1">
+            <tr>
+                <th>Degree</th>
+                <th>Inistitue</th>
+                <th>Result</th>
+            </tr>
+            <tr>
+                <td>SSC</td>
+                <td id="setSchool">Fill up the box then click submit</td>
+                <td id="setSSCGpa">0.00</td>
+            </tr>
+            <tr>
+                <td>HSC</td>
+                <td id="setCollege">Fill up the box then click submit</td>
+                <td id="setHSCGpa">0.00</td>
+            </tr>
+        </table>
+        <p>Proficiency in Programming Language: <span id="proLanguage"></span></p>
+    </center>
+
+    <br><br><br>
+
+    <!-- javaScript code -->
+
+    <script>
+
+        function getCheckBoxValue() {
+            var checkboxes = document.getElementsByName('vechicle');
+            for (var checkbox of checkboxes) {
+                if (checkbox.checked)
+                    document.getElementById('proLanguage').append(checkbox.value + ', ');
+            }
+        }
+
+        function setProperties(stName, stId, UVName, clg, HSCGpa, scl, SSCGpa) {
+            if ((HSCGpa < 0 || HSCGpa > 5) || (SSCGpa < 0 || SSCGpa > 5)) {
+                alert("You need to provide GPA within 0 to 5")
+            } else {
+                document.getElementById("setHSCGpa").innerHTML = HSCGpa;
+                document.getElementById("setSSCGpa").innerHTML = SSCGpa;
+            }
+
+            if (stName == "" || stId == "" || UVName == "") {
+                alert("Student Name, University Name & ID are required !")
+            } else {
+                document.getElementById("setStudentName").innerHTML = stName;
+                document.getElementById("setStudentId").innerHTML = stId;
+                document.getElementById("setUVName").innerHTML = UVName;
+            }
+
+            if (((HSCGpa > 0 || HSCGpa < 5) || (SSCGpa > 0 || SSCGpa < 5)) && (stName != "" || stId != "" || UVName != "")) {
+                getCheckBoxValue();
+            }
+            document.getElementById("setCollege").innerHTML = clg;
+            document.getElementById("setSchool").innerHTML = scl;
+        }
+
+        const submit = document.getElementById("submit");
+
+        submit.addEventListener("click", function () {
+
+            let studentName = document.getElementById("getName").value;
+            let studentID = document.getElementById("getId").value;
+            let universityName = document.getElementById("getUVName").value;
+            let collegeName = document.getElementById("getCollege").value;
+            let collegeGpa = document.getElementById("getHSCGpa").value;
+            let schoolName = document.getElementById("getSchool").value;
+            let schoolGpa = document.getElementById("getSSCGpa").value;
+
+            setProperties(studentName, studentID, universityName, collegeName, collegeGpa, schoolName, schoolGpa);
+        });
+
+    </script>
+
+
+</body>
+
+</html>
