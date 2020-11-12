@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        <h1>Enter any Positive Number: <input type="number" name="" id="input"></h1>
+        <button id="calculate">Calculate Fibonacci</button>
+        <h4>Answer: </h4>
+        <div class="answer" style="width: 50%; line-height:10px; height: 50px; border: 1px solid red">
+            <h3 id="answer">Please enter a positive number then click on calculate button</h3>
+        </div>
+    </center>
+
+
+    <script>
+        const btn = document.getElementById('calculate');
+        btn.addEventListener('click', function () {
+            let number = document.getElementById("input").value;
+            let output = document.getElementById('answer');
+            let arr = [];
+
+            let first = 0;
+            let second = 1;
+            let fibo = first + second;
+            arr.push(first, second, fibo);
+
+            for (let i = 3; i < number; i++) {
+                first = second;
+                second = fibo;
+                fibo = first + second;
+                arr.push(fibo);
+            }
+            let finalOutput = arr.join(' ');
+            output.innerHTML = finalOutput;
+        })
+    </script>
+</body>
+
+</html>
